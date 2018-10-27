@@ -12,8 +12,8 @@ Sum = 60
 */
 class TaskC1 {
 
-    public static void main(String[] args) {
-        System.out.println();
-    }
-    }
 
+
+
+
+}
