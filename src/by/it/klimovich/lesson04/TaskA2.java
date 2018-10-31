@@ -28,7 +28,7 @@ import java.util.Scanner;
 
 public class TaskA2 {
     public static void main(String[] args) {
-        Scanner scanner=new(System.in);
+        Scanner scanner=new Scanner(System.in);
         int day=scanner.nextInt();
         switch (day){
             case 1: System.out.println("понедельник");break;
