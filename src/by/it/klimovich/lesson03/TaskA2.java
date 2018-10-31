@@ -22,10 +22,10 @@ Lesson 03. Task A2. Стихотворение
 */
 class TaskA2 {
     public static void main(String[] args) {
-        String a="Буря мглою;";
-        String b="Небо кроет;";
-        String c="Вихри снежные;";
-        String d="Крутя;";
+        String a="Буря мглою небо кроет ;";
+        String b="вихри снежные крутя;";
+        String c="то как зверь она завоет;";
+        String d="то заплачет как дитя;";
         System.out.println("Мое любимое стихотворение:");
         System.out.println(a+"\n"+b+"\n"+c+"\n"+d);
     }
