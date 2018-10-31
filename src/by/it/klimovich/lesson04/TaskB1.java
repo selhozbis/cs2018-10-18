@@ -1,4 +1,4 @@
-package by.it._tasks_.lesson04;
+package by.it.klimovich.lesson04;
 
 /*
 Определите количество дней в году

@@ -1,4 +1,4 @@
-package by.it._tasks_.lesson02;
+package by.it.klimovich.lesson02;
 
 import org.junit.Test;
 

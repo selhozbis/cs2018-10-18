@@ -1,4 +1,4 @@
-package by.it._tasks_.lesson02;
+package by.it.klimovich.lesson02;
 /*
 Измените переменные и строку вывода в программе так,
 чтобы она рассчитывала и печатала следующее выражение
@@ -10,6 +10,6 @@ class TaskA3 {
         int i = 3;
         int j = 4;
         int k = i*i + j*j;
-        System.out.println(i + "*"+i+ j + "*" +j + "=" +k);
+        System.out.println(i + "*"+i+"+"+ j + "*" +j + "=" +k);
     }
 }
