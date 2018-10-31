@@ -1,4 +1,4 @@
-package by.it._tasks_.lesson01;
+package by.it.klimovich.lesson01;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package by.it._tasks_.lesson02;
+package by.it.klimovich.lesson02;
 /*
 напишите программу которая выводит на экран
 Hello world!
@@ -8,8 +8,6 @@ Hello world!
 Для автоматической проверки откройте и запустите класс Testing
 */
 
-class TaskA1 {
-    public static void main(String[] args) {
+class TaskA1 {public static void main(String[] args){System.out.println("Hello World!"); }}
 
-    }
-}
+
