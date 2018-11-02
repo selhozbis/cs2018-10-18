@@ -1,4 +1,4 @@
-package by.it.akhmelev.lesson05;
+package by.it.klimovich.lesson05;
 /*
 Создайте 5 различных строк в списке ArrayList:
 

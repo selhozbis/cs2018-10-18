@@ -1,4 +1,4 @@
-package by.it.akhmelev.lesson03;
+package by.it.klimovich.lesson05;
 
 import org.junit.Test;
 
@@ -6,70 +6,54 @@ import java.io.*;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 @SuppressWarnings("all") //море warnings. всех прячем.
 
 //поставьте курсор на следующую строку и нажмите Ctrl+Shift+F10
-public class Testing03 {
-
+public class Testing05 {
 
     @Test(timeout = 2500)
     public void testTaskA1() throws Exception {
-        run("7 2").include("9 5 14 3 1\n9.0 5.0 14.0 3.5 1.0");
+        run("1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n").
+                include("0\n9\n8\n7\n6\n5\n4\n3\n2\n1\n");
+        run("1\n-2\n3\n4\n5\n666\n7\n8\n9\n0\n").
+                include("0\n9\n8\n7\n666\n5\n4\n3\n-2\n1\n");
     }
+
 
     @Test(timeout = 2500)
     public void testTaskA2() throws Exception {
-        Testing03 testing = run("");
-        String[] lines = testing.strOut.toString().trim().split("\\n");
-        if (lines.length < 5)
-            fail("Недостаточно строк");
-        if (!lines[0].trim().equalsIgnoreCase("Мое любимое стихотворение:") &&
-                !lines[0].trim().equalsIgnoreCase("Моё любимое стихотворение:"))
-            fail("Нет заголовка: Мое любимое стихотворение:");
-        String old = "old";
-        for (String s : lines) {
-            if (s.length() < 10 && s.length() > 1)
-                fail("Слишком короткие строки");
-            if (old.equals(s))
-                fail("Есть одинаковые строки");
-            old = s;
-        }
+        run("ONE\nTWO\nTHREE\nFOUR\nFIVE\nEND\n").include("[ONE, TWO, THREE, FOUR, FIVE]");
+        run("ONE\nEND\n").include("[ONE]");
     }
 
     @Test(timeout = 2500)
     public void testTaskB1() throws Exception {
-        run("").include("575.222")
-                .include("111.111 ")
-                .include("7 73 273 ")
-                .include("111.111");
+        String[] lines=run("").strOut.toString().split("\n");
+        assertTrue("Неверный размер",lines.length==6 && lines[0].trim().equals("5"));
     }
+
 
     @Test(timeout = 2500)
     public void testTaskB2() throws Exception {
-        run("2 5 3").include("-1.0").include("-1.5");
-        run("2 4 2").include("-1.0\n");
-        run("2 2 2").include("Отрицательный дискриминант");
+        run("1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n22\n33\n44\n55\n66\n77\n88\n99\n0")
+                .include("a=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\n" +
+                        "b=[11, 22, 33, 44, 55, 66, 77, 88, 99, 0]\n");
     }
+
 
     @Test(timeout = 2500)
     public void testTaskC1() throws Exception {
-        Testing03 testing = run("");
-        Method m = checkMethod(testing.aClass.getSimpleName(), "convertCelsiumToFahrenheit", int.class);
-        assertEquals(104.0, (double) m.invoke(null, 40), 1e-22);
-        assertEquals(68.0, (double) m.invoke(null, 20), 1e-22);
-        assertEquals(32.0, (double) m.invoke(null, 0), 1e-22);
+        run("1\n2\n3\n4\n5\n6\n7\n8\n9\n44\n55\n11\n11\n12\n14\n12\n45\n38\n88\n77").
+                include("3\n6\n9\n12\n12\n45\n2\n4\n6\n8\n44\n12\n14\n12\n38\n88\n1\n5\n7\n55\n11\n11\n77");
     }
 
     @Test(timeout = 2500)
     public void testTaskC2() throws Exception {
-        Testing03 testing = run("");
-        Method m = checkMethod(testing.aClass.getSimpleName(), "sumDigitsInNumber", int.class);
-        assertEquals((int) m.invoke(null, 5467), 22);
-        assertEquals((int) m.invoke(null, 5555), 20);
-        assertEquals((int) m.invoke(null, 1111), 4);
-        assertEquals((int) m.invoke(null, 9993), 30);
+        run("1\n-2\n3\n4\n5\n666\n7\n8\n9\n0\n1\n-1\n3\n4\n5\n665\n7\n8\n9\n0\n").
+                include("666\n665\n9\n9\n8\n8\n7\n7\n5\n5\n4\n4\n3\n3\n1\n1\n0\n0\n-1\n-2");
     }
 
 
@@ -138,11 +122,11 @@ public class Testing03 {
 
     //метод находит и создает класс для тестирования
     //по имени вызывающего его метода, testTaskA1 будет работать с TaskA1
-    private static Testing03 run(String in) {
+    private static Testing05 run(String in) {
         return run(in, true);
     }
 
-    private static Testing03 run(String in, boolean runMain) {
+    private static Testing05 run(String in, boolean runMain) {
         Throwable t = new Throwable();
         StackTraceElement trace[] = t.getStackTrace();
         StackTraceElement element;
@@ -161,11 +145,11 @@ public class Testing03 {
         System.out.println("Старт теста для " + clName);
         if (!in.isEmpty()) System.out.println("input:" + in);
         System.out.println("---------------------------------------------");
-        return new Testing03(clName, in, runMain);
+        return new Testing05(clName, in, runMain);
     }
 
     //-------------------------------  тест ----------------------------------------------------------
-    public Testing03() {
+    public Testing05() {
         //Конструктор тестов
     }
 
@@ -177,7 +161,7 @@ public class Testing03 {
     private StringWriter strOut = new StringWriter(); //накопитель строки вывода
 
     //Основной конструктор тестов
-    private Testing03(String className, String in, boolean runMain) {
+    private Testing05(String className, String in, boolean runMain) {
         //this.className = className;
         aClass = null;
         try {
@@ -203,18 +187,18 @@ public class Testing03 {
     }
 
     //проверка вывода
-    private Testing03 is(String str) {
+    private Testing05 is(String str) {
         assertTrue("ERROR:Ожидается такой вывод:\n<---начало---->\n" + str + "<---конец--->",
                 strOut.toString().equals(str));
         return this;
     }
 
-    private Testing03 include(String str) {
+    private Testing05 include(String str) {
         assertTrue("ERROR:Строка не найдена: " + str + "\n", strOut.toString().contains(str));
         return this;
     }
 
-    private Testing03 exclude(String str) {
+    private Testing05 exclude(String str) {
         assertTrue("ERROR:Лишние данные в выводе: " + str + "\n", !strOut.toString().contains(str));
         return this;
     }

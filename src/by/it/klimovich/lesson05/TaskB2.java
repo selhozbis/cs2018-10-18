@@ -1,4 +1,4 @@
-package by.it.akhmelev.lesson05;
+package by.it.klimovich.lesson05;
 
 /*
 Один большой массив и два маленьких
